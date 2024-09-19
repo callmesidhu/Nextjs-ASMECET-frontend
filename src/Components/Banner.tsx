@@ -1,11 +1,11 @@
 import React from 'react'
 
-function page() {
+function Banner() {
   return (
     <div>
-      <h1>ASME-CET</h1>
+      
     </div>
   )
 }
 
-export default page
+export default Banner
