@@ -1,9 +1,9 @@
 // @/src/pages/index.tsx
 import React from 'react';
-import Navbar from '@/components/Navbar';
-import About from '@/components/About';
-import Banner from '@/components/Banner';
 import '../app/globals.css';
+import Navbar from '@/Components/Navbar';
+import Banner from '@/Components/Banner';
+import About from '@/Components/About';
 
 function HomePage() {
   return (
