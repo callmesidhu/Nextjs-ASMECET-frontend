@@ -12,7 +12,7 @@ function Navbar(props: Props) {
 
   return (
     <>
-      <div className="flex bg-slate-400 w-full justify-between p-5 fixed top-0">
+      <div className="flex bg-slate-400 w-full justify-between p-5 fixed top-0 z-10">
         <div>
           Logo
         </div>
