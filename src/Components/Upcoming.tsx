@@ -7,9 +7,19 @@ import { getFirestore, collection, getDocs } from 'firebase/firestore';
 import { db } from '@/lib/firebaseConfig'; // Import the initialized Firestore instance
 import Image from 'next/image';
 
+interface Event {
+  id: string;
+  eventDate: string;
+  eventImageUrl: string;
+  eventName: string;
+  eventDescription: string;
+  eventTime: string;
+  eventType: string;
+}
+
 const UpcomingEvents = () => {
   const router = useRouter();
-  const [upcomingEvents, setUpcomingEvents] = useState([]);
+  const [upcomingEvents, setUpcomingEvents] = useState<Event[]>([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -19,7 +29,7 @@ const UpcomingEvents = () => {
   const fetchEvents = async () => {
     const eventsCollection = collection(db, 'Events');
     const eventsSnapshot = await getDocs(eventsCollection);
-    const eventsList = eventsSnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
+    const eventsList = eventsSnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() } as Event));
 
     const now = new Date();
     const upcoming = eventsList.filter(event => new Date(event.eventDate) >= now);
@@ -28,7 +38,7 @@ const UpcomingEvents = () => {
     setLoading(false);
   };
 
-  const handleEventClick = (eventId) => {
+  const handleEventClick = (eventId: string) => {
     router.push(`/register/${eventId}`);
   };
 
