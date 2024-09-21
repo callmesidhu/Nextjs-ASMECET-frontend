@@ -9,7 +9,7 @@ import Image from 'next/image';
 
 interface Event {
   id: string;
-  eventDate: string;
+  eventDate: Date;
   eventImageUrl: string;
   eventName: string;
   eventDescription: string;
