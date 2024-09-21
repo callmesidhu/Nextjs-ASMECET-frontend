@@ -1,11 +1,10 @@
 // @/src/pages/index.tsx
 import React from 'react';
-import Navbar from '@/components/Navbar';
-import About from '@/components/About';
-import Banner from '@/components/Banner';
-import UpcomingEvents from '@/components/Upcoming';
-
+import Navbar from '@/Components/Navbar';
 import About from '@/Components/About';
+import Banner from '@/Components/Banner';
+import UpcomingEvents from '@/Components/Upcoming';
+
 
 function HomePage() {
   return (
