@@ -3,7 +3,11 @@ import { getFirestore, collection, getDocs, updateDoc, doc } from 'firebase/fire
 import { useRouter } from 'next/router';
 import { db } from '@/lib/firebaseConfig'; // Import the initialized Firestore instance
 
-const ViewRegistrations = ({ eventId }) => {
+interface ViewRegistrationsProps {
+  eventId: string;
+}
+
+const ViewRegistrations: React.FC<ViewRegistrationsProps> = ({ eventId }) => {
   const [registrations, setRegistrations] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
