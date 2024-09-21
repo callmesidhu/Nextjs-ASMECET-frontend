@@ -4,7 +4,8 @@ import Navbar from '@/components/Navbar';
 import About from '@/components/About';
 import Banner from '@/components/Banner';
 import UpcomingEvents from '@/components/Upcoming';
-import '../app/globals.css';
+
+import About from '@/Components/About';
 
 function HomePage() {
   return (
