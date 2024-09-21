@@ -1,13 +1,19 @@
 "use client";
 import React, { useState } from 'react';
+import { useRouter } from 'next/router';
 
 type Props = {};
 
 function Navbar(props: Props) {
   const [isOpen, setIsOpen] = useState(false);
+  const router = useRouter();
 
   const toggleMenu = () => {
     setIsOpen(!isOpen);
+  };
+
+  const handleSignIn = () => {
+    router.push('/signIn');
   };
 
   return (
@@ -16,11 +22,17 @@ function Navbar(props: Props) {
         <div>
           Logo
         </div>
-        <div className="hidden md:flex flex-row gap-16">
+        <div className="hidden md:flex flex-row gap-16 items-center">
           <p>Home</p>
           <p>Achievements</p>
           <p>Team</p>
           <p>Contact</p>
+          <button
+            onClick={handleSignIn}
+            className="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-700"
+          >
+            Sign In
+          </button>
         </div>
         <div className="md:hidden flex items-center">
           <button className="mobile-menu-button" onClick={toggleMenu}>
@@ -46,6 +58,12 @@ function Navbar(props: Props) {
         <p>Achievements</p>
         <p>Team</p>
         <p>Contact</p>
+        <button
+          onClick={handleSignIn}
+          className="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-700"
+        >
+          Sign In
+        </button>
       </div>
     </>
   );
