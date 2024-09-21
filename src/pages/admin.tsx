@@ -5,13 +5,23 @@ import React, { useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
 import { onAuthStateChanged, signOut } from 'firebase/auth';
 import { auth } from '@/lib/firebaseConfig';
-import { getFirestore, collection, getDocs } from 'firebase/firestore';
+import { getFirestore, collection, getDocs, deleteDoc, doc } from 'firebase/firestore';
+
+type Event = {
+  id: string;
+  eventDate: string;
+  eventName: string;
+  eventDescription: string;
+  eventTime: string;
+};
 
 const Admin = () => {
   const router = useRouter();
   const [loading, setLoading] = useState(true);
-  const [upcomingEvents, setUpcomingEvents] = useState([]);
-  const [pastEvents, setPastEvents] = useState([]);
+  const [upcomingEvents, setUpcomingEvents] = useState<Event[]>([]);
+  const [pastEvents, setPastEvents] = useState<Event[]>([]);
+  const [showDeletePopup, setShowDeletePopup] = useState(false);
+  const [eventToDelete, setEventToDelete] = useState<string | null>(null);
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (user) => {
@@ -39,7 +49,7 @@ const Admin = () => {
     const db = getFirestore();
     const eventsCollection = collection(db, 'Events');
     const eventsSnapshot = await getDocs(eventsCollection);
-    const eventsList = eventsSnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
+    const eventsList = eventsSnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() } as Event));
 
     const now = new Date();
     const upcoming = eventsList.filter(event => new Date(event.eventDate) >= now);
@@ -59,16 +69,37 @@ const Admin = () => {
     router.push('/newEvent');
   };
 
-  const handleEventClick = (eventId) => {
+  const handleEventClick = (eventId: string) => {
     router.push(`/event/${eventId}`);
   };
 
-  const handleViewRegistrations = (eventId) => {
+  const handleViewRegistrations = (eventId: string) => {
     router.push(`/registrations/${eventId}`);
   };
 
-  const handleEditEvent = (eventId) => {
-    router.push(`/editEvent/${eventId}`);
+  const handleEditEvent = (eventId: string) => {
+    router.push(`/editEvent?eventId=${eventId}`);
+  };
+
+  const handleDeleteEvent = (eventId: string) => {
+    setEventToDelete(eventId);
+    setShowDeletePopup(true);
+  };
+
+  const confirmDeleteEvent = async () => {
+    if (eventToDelete) {
+      try {
+        const eventDoc = doc(getFirestore(), 'Events', eventToDelete);
+        await deleteDoc(eventDoc);
+        setUpcomingEvents(upcomingEvents.filter(event => event.id !== eventToDelete));
+        setPastEvents(pastEvents.filter(event => event.id !== eventToDelete));
+        setShowDeletePopup(false);
+        setEventToDelete(null);
+      } catch (error) {
+        console.error('Error deleting event: ', error);
+        alert('Failed to delete event. Please try again.');
+      }
+    }
   };
 
   if (loading) {
@@ -123,9 +154,18 @@ const Admin = () => {
                       e.stopPropagation();
                       handleEditEvent(event.id);
                     }}
-                    className="px-4 py-2 bg-yellow-500 text-white rounded hover:bg-yellow-700"
+                    className="px-4 py-2 mr-2 bg-yellow-500 text-white rounded hover:bg-yellow-700"
                   >
                     Edit Details
+                  </button>
+                  <button
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      handleDeleteEvent(event.id);
+                    }}
+                    className="px-4 py-2 bg-red-500 text-white rounded hover:bg-red-700"
+                  >
+                    Delete Event
                   </button>
                 </div>
               </li>
@@ -159,9 +199,18 @@ const Admin = () => {
                       e.stopPropagation();
                       handleEditEvent(event.id);
                     }}
-                    className="px-4 py-2 bg-yellow-500 text-white rounded hover:bg-yellow-700"
+                    className="px-4 py-2 mr-2 bg-yellow-500 text-white rounded hover:bg-yellow-700"
                   >
                     Edit Details
+                  </button>
+                  <button
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      handleDeleteEvent(event.id);
+                    }}
+                    className="px-4 py-2 bg-red-500 text-white rounded hover:bg-red-700"
+                  >
+                    Delete Event
                   </button>
                 </div>
               </li>
@@ -169,6 +218,27 @@ const Admin = () => {
           </ul>
         </div>
       </div>
+      {showDeletePopup && (
+        <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
+          <div className="bg-white p-8 rounded shadow-md">
+            <h2 className="text-xl font-bold mb-4">Are you sure you want to delete this event?</h2>
+            <div className="flex justify-end">
+              <button
+                onClick={() => setShowDeletePopup(false)}
+                className="px-4 py-2 mr-2 bg-gray-500 text-white rounded hover:bg-gray-700"
+              >
+                Cancel
+              </button>
+              <button
+                onClick={confirmDeleteEvent}
+                className="px-4 py-2 bg-red-500 text-white rounded hover:bg-red-700"
+              >
+                Delete
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 };

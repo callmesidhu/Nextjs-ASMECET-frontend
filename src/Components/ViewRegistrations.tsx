@@ -1,10 +1,23 @@
 import React, { useEffect, useState } from 'react';
-import { getFirestore, collection, getDocs, updateDoc, doc } from 'firebase/firestore';
+import { getFirestore, collection, getDocs, updateDoc, doc, writeBatch } from 'firebase/firestore';
 import { useRouter } from 'next/router';
 import { db } from '@/lib/firebaseConfig'; // Import the initialized Firestore instance
 
-const ViewRegistrations = ({ eventId }) => {
-  const [registrations, setRegistrations] = useState([]);
+interface Registration {
+  id: string;
+  name: string;
+  phone: string;
+  email: string;
+  ktuId: string;
+  collegeName: string;
+  verified: boolean;
+}
+interface ViewRegistrationsProps {
+  eventId: string;
+}
+
+const ViewRegistrations: React.FC<ViewRegistrationsProps> = ({ eventId }) => {
+  const [registrations, setRegistrations] = useState<Registration[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
@@ -16,7 +29,15 @@ const ViewRegistrations = ({ eventId }) => {
     try {
       const registrationsCollection = collection(db, `registrations/${eventId}/registrations`);
       const registrationsSnapshot = await getDocs(registrationsCollection);
-      const registrationsList = registrationsSnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
+      const registrationsList = registrationsSnapshot.docs.map(doc => ({
+        id: doc.id,
+        name: doc.data().name,
+        phone: doc.data().phone,
+        email: doc.data().email,
+        ktuId: doc.data().ktuId,
+        collegeName: doc.data().collegeName,
+        verified: doc.data().verified,
+      }));
       setRegistrations(registrationsList);
       setLoading(false);
     } catch (error) {
@@ -25,7 +46,7 @@ const ViewRegistrations = ({ eventId }) => {
     }
   };
 
-  const handleCheckboxChange = (index) => {
+  const handleCheckboxChange = (index: number) => {
     const updatedRegistrations = [...registrations];
     updatedRegistrations[index].verified = !updatedRegistrations[index].verified;
     setRegistrations(updatedRegistrations);
@@ -33,7 +54,7 @@ const ViewRegistrations = ({ eventId }) => {
 
   const handleUpdate = async () => {
     try {
-      const batch = db.batch();
+      const batch = writeBatch(db);
       registrations.forEach((registration) => {
         const registrationDoc = doc(db, `registrations/${eventId}/registrations`, registration.id);
         batch.update(registrationDoc, { verified: registration.verified });
