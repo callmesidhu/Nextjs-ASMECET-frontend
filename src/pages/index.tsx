@@ -1,8 +1,10 @@
 // @/src/pages/index.tsx
 import React from 'react';
-import '../app/globals.css';
-import Navbar from '@/Components/Navbar';
-import Banner from '@/Components/Banner';
+import Navbar from '@/components/Navbar';
+import About from '@/components/About';
+import Banner from '@/components/Banner';
+import UpcomingEvents from '@/components/Upcoming';
+
 import About from '@/Components/About';
 
 function HomePage() {
@@ -11,6 +13,7 @@ function HomePage() {
       <Navbar />
       <Banner />
       <About />
+      <UpcomingEvents />
     </>
   );
 }
