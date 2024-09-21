@@ -12,7 +12,19 @@ const EventDetails = () => {
   const router = useRouter();
   const { id } = router.query;
   const [loading, setLoading] = useState(true);
-  const [event, setEvent] = useState(null);
+  interface EventData {
+    eventName: string;
+    eventDescription: string;
+    eventImageUrl: string;
+    enablePayments: boolean;
+    paymentImageUrl?: string;
+    eventDate: string;
+    eventTime: string;
+    eventType: string;
+    eventLocation?: string;
+  }
+
+  const [event, setEvent] = useState<EventData | null>(null);
   const [eventName, setEventName] = useState('');
   const [eventDescription, setEventDescription] = useState('');
   const [eventImage, setEventImage] = useState<File | null>(null);
@@ -39,11 +51,11 @@ const EventDetails = () => {
   const fetchEvent = async () => {
     if (!id) return;
     const db = getFirestore();
-    const eventDoc = doc(db, 'Events', id);
+    const eventDoc = doc(db, 'Events', id as string);
     const eventSnapshot = await getDoc(eventDoc);
     if (eventSnapshot.exists()) {
       const eventData = eventSnapshot.data();
-      setEvent(eventData);
+      setEvent(eventData as EventData);
       setEventName(eventData.eventName);
       setEventDescription(eventData.eventDescription);
       setEnablePayments(eventData.enablePayments);
@@ -74,7 +86,7 @@ const EventDetails = () => {
     e.preventDefault();
     const db = getFirestore();
     const storage = getStorage();
-    const eventDoc = doc(db, 'Events', id);
+    const eventDoc = doc(db, 'Events', id as string);
 
     if (!eventName || !eventDescription || !eventDate || !eventTime || !eventType || (eventType === 'offline' && !eventLocation) || !eventImage || (enablePayments && !paymentImage)) {
       setError('Please fill in all required fields.');
@@ -83,7 +95,7 @@ const EventDetails = () => {
 
     try {
       // Upload event image if changed
-      let eventImageUrl = event.eventImageUrl;
+      let eventImageUrl = event?.eventImageUrl || '';
       if (eventImage) {
         const eventImageRef = ref(storage, `events/${eventImage.name}`);
         await uploadBytes(eventImageRef, eventImage);
@@ -91,7 +103,7 @@ const EventDetails = () => {
       }
 
       // Upload payment image if payments are enabled and changed
-      let paymentImageUrl = event.paymentImageUrl;
+      let paymentImageUrl = event?.paymentImageUrl;
       if (enablePayments && paymentImage) {
         const paymentImageRef = ref(storage, `payments/${paymentImage.name}`);
         await uploadBytes(paymentImageRef, paymentImage);

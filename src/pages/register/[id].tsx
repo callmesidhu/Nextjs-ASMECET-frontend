@@ -11,7 +11,14 @@ const RegisterEvent = () => {
   const router = useRouter();
   const { id } = router.query;
   const [loading, setLoading] = useState(true);
-  const [event, setEvent] = useState(null);
+  interface EventData {
+    eventName: string;
+    enablePayments: boolean;
+    paymentImageUrl?: string;
+    // Add other fields as necessary
+  }
+  
+  const [event, setEvent] = useState<EventData | null>(null);
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [phone, setPhone] = useState('');
@@ -27,10 +34,10 @@ const RegisterEvent = () => {
   }, [id]);
 
   const fetchEvent = async () => {
-    const eventDoc = doc(db, 'Events', id);
+    const eventDoc = doc(db, 'Events', id as string);
     const eventSnapshot = await getDoc(eventDoc);
     if (eventSnapshot.exists()) {
-      setEvent(eventSnapshot.data());
+      setEvent(eventSnapshot.data() as EventData);
       setLoading(false);
     } else {
       console.error('Event not found');
@@ -47,14 +54,14 @@ const RegisterEvent = () => {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
-    if (!name || !email || !phone || !ktuId || !collegeName || (event.enablePayments && !paymentImage)) {
+    if (!name || !email || !phone || !ktuId || !collegeName || (event?.enablePayments && !paymentImage)) {
       setError('Please fill in all required fields.');
       return;
     }
 
     try {
       let paymentImageUrl = '';
-      if (event.enablePayments && paymentImage) {
+      if (event && event.enablePayments && paymentImage) {
         const paymentImageRef = ref(storage, `payments/${paymentImage.name}`);
         await uploadBytes(paymentImageRef, paymentImage);
         paymentImageUrl = await getDownloadURL(paymentImageRef);
@@ -89,7 +96,7 @@ const RegisterEvent = () => {
       </nav>
       <div className="flex items-center justify-center flex-grow">
         <form onSubmit={handleSubmit} className="w-full max-w-lg bg-white p-8 rounded shadow-md">
-          <h1 className="text-3xl font-bold mb-6">Register for {event.eventName}</h1>
+          <h1 className="text-3xl font-bold mb-6">Register for {event?.eventName ?? 'Event'}</h1>
           {error && <p className="text-red-500 mb-4">{error}</p>}
           <div className="mb-4">
             <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="name">
@@ -156,7 +163,7 @@ const RegisterEvent = () => {
               required
             />
           </div>
-          {event.enablePayments && (
+          {event && event.enablePayments && (
             <>
               <div className="mb-4">
                 <label className="block text-gray-700 text-sm font-bold mb-2">

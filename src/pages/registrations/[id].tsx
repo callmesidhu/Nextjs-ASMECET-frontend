@@ -10,7 +10,17 @@ const ViewRegistrations = () => {
   const router = useRouter();
   const { id } = router.query;
   const [loading, setLoading] = useState(true);
-  const [registrations, setRegistrations] = useState([]);
+  interface Registration {
+    id: string;
+    name?: string;
+    phone?: string;
+    email?: string;
+    ktuId?: string;
+    collegeName?: string;
+    verified?: boolean;
+  }
+  
+  const [registrations, setRegistrations] = useState<Registration[]>([]);
 
   useEffect(() => {
     if (id) {
@@ -26,7 +36,7 @@ const ViewRegistrations = () => {
     setLoading(false);
   };
 
-  const handleCheckboxChange = (index) => {
+  const handleCheckboxChange = (index: number) => {
     const updatedRegistrations = [...registrations];
     updatedRegistrations[index].verified = !updatedRegistrations[index].verified;
     setRegistrations(updatedRegistrations);
