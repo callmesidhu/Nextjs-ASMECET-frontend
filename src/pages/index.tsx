@@ -4,6 +4,7 @@ import Navbar from '@/Components/Navbar';
 import About from '@/Components/About';
 import Banner from '@/Components/Banner';
 import UpcomingEvents from '@/Components/Upcoming';
+import Contact from '@/Components/Contact';
 
 
 function HomePage() {
@@ -13,6 +14,7 @@ function HomePage() {
       <Banner />
       <About />
       <UpcomingEvents />
+      <Contact/>
     </>
   );
 }
