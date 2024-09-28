@@ -18,24 +18,25 @@ export const Intro = () => {
                             </h1>
                         </i>
                     </div>
-                    
+
                     <Image
                         className="absolute right-0 h-[100%] w-auto -z-10"
                         src={intro}
                         alt="Logo"
                     />
-                
-            </div>
+                </div>
                 <div className="mx-52 w-[40%]">
-                <i><h1 className="text-2xl font-serif">
-                The College of Engineering, Thiruvananthapuram, commonly shortened to CET, is an engineering College in the Indian state of Kerala, situated in Trivandrum
-                </h1></i>
+                    <i>
+                        <h1 className="text-2xl font-serif">
+                            The College of Engineering, Thiruvananthapuram, commonly shortened to CET, is an engineering College in the Indian state of Kerala, situated in Trivandrum
+                        </h1>
+                    </i>
                 </div>
-                </div>
+            </div>
             {/* Scrolling Text (replace marquee) */}
             <div className="overflow-hidden mt-8">
                 <h1 className="animate-scroll whitespace-nowrap text-center text-8xl font-semibold">
-                    The American Society of Mechanical Engineers (ASME) is an American professional association that, in its own words, "promotes the art, science, and practice of multidisciplinary engineering and allied sciences around the globe" via "continuing education, training and professional development, codes and standards, research, conferences and publications, government relations, and other forms of outreach."
+                    The American Society of Mechanical Engineers (ASME) is an American professional association that, in its own words, &quot;promotes the art, science, and practice of multidisciplinary engineering and allied sciences around the globe&quot; via &quot;continuing education, training and professional development, codes and standards, research, conferences and publications, government relations, and other forms of outreach.&quot;
                 </h1>
             </div>
         </div>
