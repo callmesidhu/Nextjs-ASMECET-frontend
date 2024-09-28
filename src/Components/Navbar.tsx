@@ -1,6 +1,8 @@
 "use client";
 import React, { useState } from 'react';
 import { useRouter } from 'next/router';
+import logo from '../../public/nav-logo.png'
+import Image from 'next/image';
 
 type Props = {};
 
@@ -18,20 +20,40 @@ function Navbar(props: Props) {
 
   return (
     <>
-      <div className="flex bg-slate-400 w-full justify-between p-5 fixed top-0 z-10">
-        <div>
-          Logo
+      <div className="flex bg-black w-full justify-between p-5 fixed top-0 z-10">
+        <div className='mx-6'>
+        <Image
+      src={logo}
+      width={100}
+      height={100}
+      alt="Logo"
+    />
         </div>
         <div className="hidden md:flex flex-row gap-16 items-center">
-          <p>Home</p>
-          <p>Achievements</p>
-          <p>Team</p>
-          <p>Contact</p>
+          <button>
+            <h1 className='text-2xl font-serif'>
+              Home
+            </h1>
+          </button>
+          <button>
+            <h1 className='text-2xl font-serif'>
+              Achievments
+            </h1>
+          </button>
+          <button>
+            <h1 className='text-2xl font-serif'>
+              Teams
+            </h1>
+          </button><button>
+            <h1 className='text-2xl font-serif'>
+              Contact
+            </h1>
+          </button>
           <button
             onClick={handleSignIn}
-            className="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-700"
+            className="px-6 py-2 bg-white text-black hover:bg-gray-300 rounded-3xl "
           >
-            Sign In
+            Sign&nbsp;In
           </button>
         </div>
         <div className="md:hidden flex items-center">
