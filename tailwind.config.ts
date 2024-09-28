@@ -16,8 +16,18 @@ const config: Config = {
       colors: {
         gtext: '#7DFFAF',
       },
+      keyframes: {
+        scroll: {
+          '0%': { transform: 'translateX(100%)' },
+          '100%': { transform: 'translateX(-100%)' },
+        },
+      },
+      animation: {
+        scroll: 'scroll 25s linear infinite',
+      },
     },
   },
   plugins: [],
 };
+
 export default config;
