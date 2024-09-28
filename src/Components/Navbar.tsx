@@ -44,7 +44,13 @@ function Navbar(props: Props) {
             <h1 className='text-2xl font-serif'>
               Teams
             </h1>
-          </button><button>
+          </button>
+          <button>
+            <h1 className='text-2xl font-serif'>
+              Events
+            </h1>
+          </button>
+          <button>
             <h1 className='text-2xl font-serif'>
               Contact
             </h1>
