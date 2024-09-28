@@ -13,7 +13,6 @@ function HomePage() {
       <Navbar />
       <Banner />
       <About />
-      <UpcomingEvents />
       <Contact/>
     </>
   );
