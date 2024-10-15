@@ -41,17 +41,21 @@ function Banner() {
             alt={`Slide ${index}`}
             layout="fill"
             objectFit="cover"
+            objectPosition="center"
+            priority={index === 0} // Load the first image with priority
           />
         </div>
       ))}
       <button
         onClick={handlePrevClick}
+        aria-label="Previous Slide"
         className="absolute left-0 top-1/2 transform -translate-y-1/2 bg-gray-800 bg-opacity-50 text-white p-2 rounded-full focus:outline-none"
       >
         &#9664;
       </button>
       <button
         onClick={handleNextClick}
+        aria-label="Next Slide"
         className="absolute right-0 top-1/2 transform -translate-y-1/2 bg-gray-800 bg-opacity-50 text-white p-2 rounded-full focus:outline-none"
       >
         &#9654;

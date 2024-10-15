@@ -10,11 +10,13 @@ import {Intro} from '@/Components/Intro'
 
 function HomePage() {
   return (
-    <div className='flex-1 flex w-full h-full'>
+    <>
       <Navbar />
-
+      <Intro/>
+      <Banner />
+      <About />
       <Contact/>
-    </div>
+    </>
   );
 }
 
