@@ -6,3 +6,22 @@ body{
         background-color: #000F0A;
         color: white;
 }
+
+/* For WebKit browsers */
+::-webkit-scrollbar {
+        width: 8px; /* Width of the scrollbar */
+      }
+      
+      ::-webkit-scrollbar-track {
+        background: #000F0A; /* Background of the track (the area the scroll thumb slides in) */
+      }
+      
+      ::-webkit-scrollbar-thumb {
+        background: #7DFFAF; /* Color of the scrollbar thumb */
+        border-radius: 16px; /* Rounded corners on the scrollbar thumb */
+      }
+      
+      ::-webkit-scrollbar-thumb:hover {
+        background: #0F2819; /* Darker color when hovered */
+      }
+      

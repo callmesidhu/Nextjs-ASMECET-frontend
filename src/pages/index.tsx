@@ -14,7 +14,6 @@ function HomePage() {
       <Navbar />
       <Intro/>
       <Banner />
-      
       <About />
       <Contact/>
     </>
