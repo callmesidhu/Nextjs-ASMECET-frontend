@@ -81,14 +81,14 @@ function Navbar(props: Props) {
           </button>
         </div>
       </div>
-      <div className={`mobile-menu ${isOpen ? 'block' : 'hidden'} md:hidden flex flex-col gap-4 p-5 bg-slate-400`}>
+      <div className={`mobile-menu ${isOpen ? 'block' : 'hidden'} md:hidden flex flex-col gap-4 p-5 bg-black`}>
         <p>Home</p>
         <p>Achievements</p>
         <p>Team</p>
         <p>Contact</p>
         <button
           onClick={handleSignIn}
-          className="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-700"
+          className="px-4 py-2 bg-[#0F2819] text-gtext rounded hover:bg-[#000F0A]"
         >
           Sign In
         </button>
