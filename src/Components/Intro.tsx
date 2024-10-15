@@ -5,11 +5,11 @@ import intro from './../../public/intro.png';
 
 export const Intro = () => {
     return (
-        <div className="mt-24">
-            <div className="relative">
+        <div className="mt-24 ">
+            <div className="relative ">
                 <div className="flex flex-1 flex-row">
                     <div className="flex flex-1 justify-center items-center py-16 flex-col">
-                        <h1 className="text-[200px] font-serif text-gtext">ASME-CET</h1>
+                        <h1 className="lg:text-[200px] md:text-[150px] text-[100px] font-serif text-gtext">ASME-CET</h1>
                         <br />
                         <i>
                             <h1 className="text-3xl font-serif font-extralight">

@@ -8,6 +8,17 @@ const config: Config = {
   ],
   theme: {
     extend: {
+      screens: {
+
+        'xs': '250px',  // Custom breakpoint for extra small screens
+        'sm': '300px',  // Small screen breakpoint (default)
+        'md': '900px',  // Medium screen breakpoint (default)
+        'lg': '1024px', // Large screen breakpoint (default)
+        'xl': '1280px', // Extra large screen breakpoint (default)
+        '2xl': '1536px',// 2X large screen breakpoint (default)
+        '3xl': '1920px',// Custom breakpoint for very large screens
+      },
+
       backgroundImage: {
         "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
         "gradient-conic":
