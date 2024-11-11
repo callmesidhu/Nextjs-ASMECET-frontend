@@ -16,8 +16,8 @@ export const Intro = () => {
                         </h1>
                         <br />
                         <i>
-                            <h1 className="text-lg md:text-2xl font-serif font-extralight text-center lg:text-left">
-                                The American Society of Mechanical Engineers
+                            <h1 className="text-lg md:text-2xl font-serif font-extralight text-center">
+                                The American Society of Mechanical Engineers<br />
                                 College of Engineering Trivandrum
                             </h1>
                         </i>
