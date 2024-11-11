@@ -26,7 +26,7 @@ const Admin = () => {
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (user) => {
       if (!user) {
-        router.push('/signIn');
+        router.push('/');
       } else {
         fetchEvents();
       }
