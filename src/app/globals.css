@@ -1,10 +1,13 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+@import url('https://fonts.googleapis.com/css2?family=Inder&display=swap');
+
 
 body{
-        background-color: #000F0A;
-        color: white;
+  background-color: #000F0A;
+  color: white;
+  @apply font-inder;
 }
 
 /* For WebKit browsers */

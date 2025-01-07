@@ -26,7 +26,7 @@ const Admin = () => {
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (user) => {
       if (!user) {
-        router.push('/signIn');
+        router.push('/');
       } else {
         fetchEvents();
       }
@@ -107,7 +107,7 @@ const Admin = () => {
   }
 
   return (
-    <div className="flex flex-col min-h-screen bg-gray-100">
+    <div className="flex flex-col min-h-screen bg-gray-100 text-black font-sans">
       <nav className="flex items-center justify-between p-4 bg-blue-600 text-white">
         <h1 className="text-xl font-bold" onClick={() => router.push('/')}>ASME CET Admin Portal</h1>
         <div>

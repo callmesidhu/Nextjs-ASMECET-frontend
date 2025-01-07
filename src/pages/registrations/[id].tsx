@@ -116,7 +116,7 @@ const ViewRegistrations = () => {
   }
 
   return (
-    <div className="flex flex-col min-h-screen bg-gray-100">
+    <div className="flex flex-col min-h-screen bg-gray-100 text-black font-sans">
       <nav className="flex items-center justify-between p-4 bg-blue-600 text-white">
         <h1 className="text-xl font-bold cursor-pointer" onClick={() => router.push('/admin')}>ASME CET Admin Portal</h1>
       </nav>
@@ -172,7 +172,7 @@ const ViewRegistrations = () => {
               ))}
             </tbody>
           </table>
-          <div className="flex flex-col sm:flex-row justify-end mt-4">
+          <div className="flex flex-col sm:flex-row justify-end mt-8 pt-3 border-t-2">
             <button
               onClick={handleUpdate}
               className="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-700 mb-2 sm:mb-0 sm:mr-2"

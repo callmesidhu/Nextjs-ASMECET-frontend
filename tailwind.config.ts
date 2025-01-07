@@ -27,6 +27,10 @@ const config: Config = {
       colors: {
         gtext: '#7DFFAF',
       },
+      
+      fontFamily: {
+        'inder' : ['Inder','sans-serif'],
+      },
       keyframes: {
         scroll: {
           '0%': { transform: 'translateX(100%)' },

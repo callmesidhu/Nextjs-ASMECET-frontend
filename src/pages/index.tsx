@@ -6,6 +6,7 @@ import Banner from '@/Components/Banner';
 import UpcomingEvents from '@/Components/Upcoming';
 import Contact from '@/Components/Contact';
 import {Intro} from '@/Components/Intro'
+import Asme from '@/Components/Asme';
 
 
 function HomePage() {
@@ -14,6 +15,7 @@ function HomePage() {
       <Navbar />
       <Intro/>
       <Banner />
+      <Asme />
       <About />
       <Contact/>
     </>
