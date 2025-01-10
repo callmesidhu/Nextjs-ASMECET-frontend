@@ -33,12 +33,12 @@ function Teams() {
     <>
     <Navbar />
 <div ref={teamsRef} id='teams' className="mt-24 justify-center items-center flex flex-col">
-            <div className="relative">
+            <div className="relative p-9">
                 {/* Responsive flex layout for large and small screens */}
-                <div className="flex flex-col items-center lg:items-start">
+                <div className="flex flex-col lg:items-start">
                     <div className="flex flex-1 justify-center items-center flex-col">
                         {/* Responsive heading sizes */}
-                        <h1 className="text-[40px] font-serif text-gtext text-center lg:text-left">
+                        <h1 className="text-[40px] font-serif text-gtext text-center">
                             Our Team
                         </h1>
                         <br />
@@ -48,7 +48,7 @@ function Teams() {
           <div
             key={member.id}
             className={clsx(
-              "bg-[#061d0d] p-4 rounded-xl transform transition duration-300 hover:scale-105",
+              "bg-gray-800 p-4 rounded-xl transform transition duration-300 hover:scale-105",
               { 'opacity-0 translate-y-8': !isActive }, // Hidden state
               { 'opacity-100 translate-y-0 transition-all duration-700 ease-in-out delay-0': isActive } // Visible state
             )}
