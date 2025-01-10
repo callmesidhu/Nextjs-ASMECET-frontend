@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "@firebase/firestore": "^4.7.2",
+    "clsx": "^2.1.1",
     "firebase": "^10.13.2",
     "jspdf": "^2.5.2",
     "jspdf-autotable": "^3.8.3",
