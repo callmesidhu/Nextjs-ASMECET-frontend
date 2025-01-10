@@ -7,7 +7,7 @@ type Props = {}
 const Asme = (props: Props) => {
   return (
     <>
-    <div className='flex flex-col md:flex-row justify-center items-center text-white pt-[38px] md:px-0 gap-[40px] md:gap-[80px]'>
+    <div  className='flex flex-col md:flex-row justify-center items-center text-white pt-[38px] md:px-0 gap-[40px] md:gap-[80px]'>
         <div className='flex flex-col items-center justify-center pt-[50px] px-[30px]'>
             <Image src={logo} alt="ASME Logo" height={245}/>
         </div>

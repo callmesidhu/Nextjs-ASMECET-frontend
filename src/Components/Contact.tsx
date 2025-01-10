@@ -3,7 +3,7 @@ import './Contact.css';
 
 function Contact() {
   return (
-    <section className='flex-1 w-full h-full'>
+    <section id='contact' className='flex-1 w-full h-full'>
       <hr className='border-gtext mx-6 my-12' />
       <h1 className='inter text-center lg:text-6xl text-5xl'>Contact Us</h1>
       

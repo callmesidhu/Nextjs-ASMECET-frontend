@@ -28,7 +28,7 @@ function Banner() {
   };
 
   return (
-    <div className="relative w-full h-0 pb-[56.25%] overflow-hidden mt-16">
+    <div id='achievements' className="relative w-full h-0 pb-[56.25%] overflow-hidden mt-16">
       {images.map((image, index) => (
         <div
           key={index}

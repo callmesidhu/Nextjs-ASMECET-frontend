@@ -10,12 +10,22 @@ function Navbar(props: Props) {
   const [isOpen, setIsOpen] = useState(false);
   const router = useRouter();
 
+  const handleScroll = (sectionId: string) => {
+    const section = document.getElementById(sectionId);
+    if (section) {
+      section.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
+
   const toggleMenu = () => {
     setIsOpen(!isOpen);
   };
 
   const handleSignIn = () => {
     router.push('/signIn');
+  };
+  const goToTeams = () => {
+    router.push('/teams');
   };
 
   return (
@@ -30,27 +40,27 @@ function Navbar(props: Props) {
     />
         </div>
         <div className="hidden md:flex flex-row gap-16 items-center">
-          <button>
+          <button onClick={() => handleScroll('home')}>
             <h1 className='text-2xl font-serif'>
               Home
             </h1>
           </button>
-          <button>
+          <button onClick={() => handleScroll('achievements')}>
             <h1 className='text-2xl font-serif'>
               Achievments
             </h1>
           </button>
-          <button>
+          <button onClick={goToTeams}>
             <h1 className='text-2xl font-serif'>
               Teams
             </h1>
           </button>
-          <button>
+          <button  onClick={() => handleScroll('events')}>
             <h1 className='text-2xl font-serif'>
               Events
             </h1>
           </button>
-          <button>
+          <button  onClick={() => handleScroll('contact')}>
             <h1 className='text-2xl font-serif'>
               Contact
             </h1>
