@@ -1,21 +1,36 @@
-[
-        {
-          "id": 1,
-          "name": "ABCD",
-          "role": "abcd",
-          "imgURL": ""
-        },
-        {
-          "id": 2,
-          "name": "EFGH",
-          "role": "efgh",
-          "imgURL": ""
-        },
-        {
-          "id": 3,
-          "name": "IJKL",
-          "role": "ijkl",
-          "imgURL": ""
-        }
-      ]
-      
+{
+  "execome": [
+    {
+      "id": 1,
+      "name": "ABCD",
+      "role": "abcd",
+      "imgURL": ""
+    },
+    {
+      "id": 2,
+      "name": "EFGH",
+      "role": "efgh",
+      "imgURL": ""
+    },
+    {
+      "id": 3,
+      "name": "IJKL",
+      "role": "ijkl",
+      "imgURL": ""
+    }
+  ],
+  "web": [
+    {
+      "id": 1,
+      "name": "S Sidharth",
+      "role": "Developer",
+      "imgURL": ""
+    },
+    {
+      "id": 2,
+      "name": "Ivin Mathew",
+      "role": "Developer",
+      "imgURL": ""
+    }
+  ]
+}
