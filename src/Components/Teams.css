@@ -1,13 +1,13 @@
 .button-container {
         display: flex;
-        gap: 8px; /* Space between buttons */
+        gap: 0px; 
+        background-color: #1e293b;
       }
       
       .btn {
         padding: 8px 16px;
         border: 2px solid transparent;
         border-radius: 8px;
-        background-color: #1e293b; /* Dark background */
         color: white;
         font-family: Arial, sans-serif;
         font-size: 14px;
@@ -16,12 +16,13 @@
       }
       
       .btn.active {
-        background-color: #6cebcd; /* Light teal background */
+        background-color: #6cebcd; 
         color: black;
-        border: 2px solid white; /* Outline */
+        border: 2px solid white;
+        border-radius: 8px;
       }
       
-      .btn:hover {
+      .btn.active:hover {
         opacity: 0.9;
+        scale: 1.1;
       }
-      
