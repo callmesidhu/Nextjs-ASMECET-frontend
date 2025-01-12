@@ -56,20 +56,20 @@ function Teams() {
   }, []);
 
   const [web, setWeb] = useState(false);
-  const [webTeam, setWebTeam] = useState(people.execome);
+  const [Team, setTeam] = useState(people.execome);
 
   const [activeButton, setActiveButton] = useState<string>("execome");
 
   const handleTeamSwitch = (team: string) => {
     setActiveButton(team);
     setWeb(team === "web");
-    setWebTeam(team === "web" ? people.web : people.execome);
+    setTeam(team === "web" ? people.web : people.execome);
   };
 
   return (
     <>
       {/* Navbar */}
-      <div className="flex bg-black w-full justify-between py-5 px-2 fixed top-0 z-10">
+      <div className="flex bg-black w-full justify-between py-1 px-2 fixed top-0 z-10">
         <div className="m-4">
           <Image src={navlogo} width={100} height={100} alt="Logo" />
         </div>
@@ -100,9 +100,9 @@ function Teams() {
       <div
         ref={teamsRef}
         id="teams"
-        className="mt-24 flex flex-col justify-center items-center"
+        className="mt-10 flex flex-col justify-center items-center"
       >
-        <div className="relative p-9">
+        <div className="p-9 justify-evenly">
           {/* Heading and Buttons */}
           <div className="flex flex-col items-center">
             {/* Heading */}
@@ -128,33 +128,34 @@ function Teams() {
           <br />
 
           {/* Team Member Cards */}
-          <div className="w-full flex justify-center">
-            <div className="grid gap-6 grid-cols-1 sm:grid-cols-1 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 mt-6 max-w-full">
-              {webTeam.map((member) => (
-                <div
-                  key={member.id}
-                  className={clsx(
-                    "bg-gray-800 p-4 rounded-xl transform transition duration-300 hover:scale-105",
-                    { "opacity-0 translate-y-8": !isActive }, // Hidden state
-                    {
-                      "opacity-100 translate-y-0 transition-all duration-700 ease-in-out delay-0":
-                        isActive,
-                    } // Visible state
-                  )}
-                >
-                  <Image
-                    src={member.imgURL || logo}
-                    className="rounded-lg"
-                    alt={member.name}
-                  />
-                  <h2 className="text-lg font-semibold text-green-400 text-center">
-                    {member.name}
-                  </h2>
-                  <p className="text-white text-center">{member.role}</p>
-                </div>
-              ))}
-            </div>
-          </div>
+          <div className="w-full flex justify-evenly">
+  <div className="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-6 mt-6 justify-evenly">
+    {Team.map((member) => (
+      <div
+        key={member.id}
+        className={clsx(
+          "bg-gray-800 justify-evenly p-4 rounded-xl transform transition duration-300 hover:scale-105",
+          { "opacity-0 translate-y-8": !isActive }, // Hidden state
+          {
+            "opacity-100 justify-evenly translate-y-0 transition-all duration-700 ease-in-out delay-0":
+              isActive,
+          } // Visible state
+        )}
+      >
+        <Image
+          src={member.imgURL || logo}
+          className="rounded-lg"
+          alt={member.name}
+        />
+        <h2 className="text-lg font-semibold text-green-400 text-center">
+          {member.name}
+        </h2>
+        <p className="text-white text-center">{member.role}</p>
+      </div>
+    ))}
+  </div>
+</div>
+
 
           {/* Background Image */}
           <Image
